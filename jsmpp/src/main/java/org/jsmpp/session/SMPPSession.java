@@ -219,6 +219,10 @@ public class SMPPSession extends AbstractSession implements ClientSession {
 			throw new IOException("Failed connecting");
 		}
 		
+		if (conn != null && conn.isOpen()) {
+			conn.close();
+		}
+		
 		conn = connFactory.createConnection(host, port);
 		logger.info("Connected to {}", conn.getInetAddress());
 		
