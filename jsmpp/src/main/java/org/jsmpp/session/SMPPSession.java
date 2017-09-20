@@ -215,7 +215,7 @@ public class SMPPSession extends AbstractSession implements ClientSession {
             BindParameter bindParam, long timeout) 
 	        throws IOException {
 	    logger.debug("Connect and bind to {} port {}", host, port);
-		if (sequence().currentValue() != 1) {
+		if (sessionContext.getSessionState().isBound()) {
 			throw new IOException("Failed connecting");
 		}
 		
